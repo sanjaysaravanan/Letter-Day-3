@@ -20,7 +20,7 @@
 }
 
 .mine-image > img {
-  height: 500px;
+  height: 100vh;
   width: 100vw;
   object-fit: contain;
 }
