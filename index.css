@@ -11,6 +11,19 @@
   align-items: center;
 }
 
+.mine-image {
+  text-align: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.1;
+}
+
+.mine-image > img {
+  height: 500px;
+  width: 100vw;
+  object-fit: contain;
+}
 
 .close-icon {
   position: absolute;

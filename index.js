@@ -161,7 +161,7 @@ async function displayTextOneLetterAtATime(text, outputElement) {
     if (index < text.length) {
       outputElement.textContent += text.charAt(index);
       index++;
-      setTimeout(() => displayNextLetter(resolve), 100); // Adjust the delay (in milliseconds) between letters
+      setTimeout(() => displayNextLetter(resolve), 1); // Adjust the delay (in milliseconds) between letters
     } else {
       resolve();
     }
@@ -173,6 +173,17 @@ let image = null;
 const mainDiv = document.getElementById("main-div");
 
 const overlay = document.getElementById("overlay");
+
+const createImage = (id) => {
+  const image = document.createElement("img");
+      image.style.height = "250px";
+      image.style.width = "250px";
+      image.style.objectFit = "contain";
+      image.style.margin = "16px";
+      image.style.cursor = "pointer";
+      image.setAttribute("src", `image-${id}.jpg`);
+  return image;
+}
 
 const closeOverlay = () => {
   overlay.removeChild(overlay.children[1]);
@@ -187,19 +198,14 @@ const doOperation = async () => {
     if (text === "&#10084;") {
       document.getElementById(id).innerHTML = text;
     } else if (text === "image") {
-      const image = document.createElement("img");
-      image.style.height = "250px";
-      image.style.width = "250px";
-      image.style.objectFit = "contain";
-      image.style.margin = "16px";
-      image.style.cursor = "pointer";
-      image.setAttribute("src", `image-${id}.jpg`);
+      const image = createImage(id);
       image.addEventListener("click", () => {
         overlay.style.display = "flex";
-        image.style.height = "60vh";
-        image.style.width = "50vh";
-        image.style.margin = "0px";
-        overlay.appendChild(image);
+        const overlayImage = createImage(id);
+        overlayImage.style.height = "75vh";
+        overlayImage.style.width = "75vw";
+        overlayImage.style.margin = "0px";
+        overlay.appendChild(overlayImage);
       });
       mainDiv.appendChild(image);
     } else await displayTextOneLetterAtATime(text, document.getElementById(id));
