@@ -161,7 +161,7 @@ async function displayTextOneLetterAtATime(text, outputElement) {
     if (index < text.length) {
       outputElement.textContent += text.charAt(index);
       index++;
-      setTimeout(() => displayNextLetter(resolve), 1); // Adjust the delay (in milliseconds) between letters
+      setTimeout(() => displayNextLetter(resolve), 100); // Adjust the delay (in milliseconds) between letters
     } else {
       resolve();
     }
